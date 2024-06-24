@@ -110,15 +110,12 @@ export class TaskComponent implements OnInit {
     console.log('Editing task:', task); 
     this.selectedTask = task;
     this.isEditMode = true;
+    this.taskEdit.emit(task);
   }
 
   updateTask(): void {
     if (this.selectedTask) {
       console.log('Updating task:', this.selectedTask); 
-      this.selectedTask.taskName = this.selectedTask.taskName;
-      this.selectedTask.dueDate = new Date(this.selectedTask.dueDate);
-      this.selectedTask.taskDescription = this.selectedTask.taskDescription;
-  
       this.taskService.updateTask(this.selectedTask).subscribe(
         (updatedTask: Task) => {
           console.log('Updated Task:', updatedTask); 
@@ -142,6 +139,7 @@ export class TaskComponent implements OnInit {
     }
   }
   
+  
   updateDueDate(newDueDate: Date): void {
     if (this.selectedTask) {
       this.selectedTask.dueDate = newDueDate;
@@ -163,10 +161,12 @@ export class TaskComponent implements OnInit {
   }
   
   onTaskUpdated(updatedTask: Task): void {
-    const index = this.tasks.findIndex(t => t.taskName === updatedTask.taskName);
+    const index = this.tasks.findIndex(t => t.taskId === updatedTask.taskId);
     if (index !== -1) {
       this.tasks[index] = updatedTask;
+      this.updateTask();
       this.updateTaskCounts();
+      
     }
   }
 
@@ -208,19 +208,24 @@ export class TaskComponent implements OnInit {
         this.tasks.push(updatedTask); 
         this.updateTaskCounts(); 
         this.snackBar.open(`Task status updated to ${status}.`, 'Close', { duration: 2000 });
-        if (status === TaskStatus.IN_PROGRESS) {
-          this.sortTasksByPriority(this.inProgressTasks); 
-        } else if (status === TaskStatus.COMPLETED) {
-          this.sortTasksByPriority(this.completedTasks); 
-        } else if (status === TaskStatus.PENDING) {
-          this.sortTasksByPriority(this.pendingTasks); 
+        if (this.showAllTasks) {
+          this.sortTasksByPriority(this.tasks); 
+        } else {
+          
+          if (status === TaskStatus.IN_PROGRESS) {
+            this.sortTasksByPriority(this.inProgressTasks); 
+          } else if (status === TaskStatus.COMPLETED) {
+            this.sortTasksByPriority(this.completedTasks); 
+          } else if (status === TaskStatus.PENDING) {
+            this.sortTasksByPriority(this.pendingTasks); 
+          }
         }
       },
       error => {
         console.error('Error updating task status:', error);
         this.snackBar.open('Error updating task. Please try again later.', 'Close', { duration: 2000 });
       }
-      );
+    );
   }
 
   private removeFromTaskList(task: Task, taskList: Task[]): void {
@@ -331,6 +336,4 @@ export class TaskComponent implements OnInit {
     this.inProgressTasks = this.tasks.filter(task => task.taskStatus === TaskStatus.IN_PROGRESS);
     this.sortCompletedTasksByPriority();
   }
-  
 }
-

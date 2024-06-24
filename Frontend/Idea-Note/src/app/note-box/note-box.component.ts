@@ -54,39 +54,33 @@ export class NoteBoxComponent implements OnChanges {
   }
 
   submitNote() {
-    if (!this.dueDate) {
-      alert("Please enter a due date.");
+    if (!this.dueDate || !this.taskDescription || !this.taskName) {
+      alert('Please fill in all required fields.');
       return;
     }
-
     const selectedDate = new Date(this.dueDate);
     selectedDate.setHours(0, 0, 0, 0);
-  
     const currentDate = new Date();
     currentDate.setHours(0, 0, 0, 0);
-
     if (selectedDate < currentDate) {
       alert("Due date should be today's date or a future date.");
       return;
     }
 
-    if (this.isEditMode && this.taskDetails) {
-      const updatedTask = new Task(
-        this.taskDetails.taskName,
-        this.dueDate,
-        this.taskDetails.taskPriority ?? '',
-        this.taskDescription,
-        this.taskDetails.isArchived,
-        this.taskDetails.taskId,
-        this.taskDetails.trashed,
-        null
-      );
+    if (this.taskDetails) {
+      const updatedTask = {
+        ...this.taskDetails,
+        taskName: this.taskName,
+        dueDate: this.dueDate,
+        taskDescription: this.taskDescription
+      };
 
       this.taskService.updateTask(updatedTask).subscribe(
         response => {
           this.taskUpdated.emit(response);
           this.isEditMode = false;
           this.isExpanded = false;
+          this.taskUpdated.emit(updatedTask);
         },
         error => {
           console.error('Error updating task:', error);

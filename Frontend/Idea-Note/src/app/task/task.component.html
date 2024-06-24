@@ -1,5 +1,5 @@
 <app-dashboard></app-dashboard>
-<app-note-box [taskDetails]="selectedTask" [isEditMode]="isEditMode" (taskAdded)="loadAllTasks()" (taskEdit)="onTaskUpdated($event)" ></app-note-box>
+<app-note-box [taskDetails]="selectedTask" [isEditMode]="isEditMode" (taskAdded)="loadAllTasks()" (taskUpdated)="onTaskUpdated($event)" ></app-note-box>
 
 <div class="task-status-section">
   <div class="task-button" (click)="toggleAllTasksVisibility()">All Tasks ({{ tasks.length }})</div>
