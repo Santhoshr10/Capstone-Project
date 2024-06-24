@@ -1,0 +1,76 @@
+.task-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  margin: 0 auto; 
+  max-width: 1200px; 
+}
+  
+.task-card {
+  background-color: #3498db;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin: 24px;
+  width: 300px; 
+  height: auto;
+  transition: transform 0.2s ease-in-out;
+  position: relative;
+  margin-top: 100px;
+  color: #fff;
+}
+
+.task-card:hover {
+  transform: translateY(-5px);
+  background-color: gray;
+}
+  
+.task-details {
+   margin-bottom: 12px;
+}
+  
+.task-details h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+  
+.task-details p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+  
+.task-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+  
+.task-actions button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+  
+.task-actions button i {
+  color: black;
+  margin-right: 8px;
+}
+  
+.no-archives {
+  text-align: center;
+  padding: 20px;
+  margin-top: 50px; 
+}
+  
+.no-archives p {
+  font-size: 18px;
+  margin-top: 180px;
+}
+
+.no-archives img {
+  width: 200px; 
+  height: auto; 
+}
+

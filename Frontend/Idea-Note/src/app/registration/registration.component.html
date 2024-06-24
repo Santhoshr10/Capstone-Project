@@ -1,0 +1,48 @@
+<div class="background">
+  <span class="img3"> <img src="assets\images\img3.png" width="900px" height="auto" alt=""></span>
+  <div class="container">
+    <h2 class="login-header">Register</h2>
+    <form #registerForm="ngForm" class="animated-form">
+      <div class="form-group">
+        <label for="userName">Username:</label>
+        <div class="inputbox">
+          <input type="text" class="form-control" id="userName" placeholder="Enter your username" name="userName"
+            [(ngModel)]="user.userName" required minlength="5" maxlength="20" #userNameInput="ngModel"
+            (input)="updateUserNameError()">
+          <i class="material-icons" title="Username">account_circle</i>
+        </div>
+        <div *ngIf="userNameError" class="error-message">{{ userNameError }}</div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <div class="inputbox">
+          <input type="email" class="form-control" id="email" placeholder="Enter your email" name="email"
+            [(ngModel)]="user.email" required email #emailInput="ngModel" (input)="updateEmailError()">
+          <i class="material-icons" title="Email">email</i>
+        </div>
+        <div *ngIf="emailError" class="error-message">{{ emailError }}</div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <div class="inputbox">
+          <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password"
+            placeholder="Enter your password" name="password" [(ngModel)]="user.password" required minlength="8"
+            maxlength="20" #passwordInput="ngModel" (input)="updatePasswordErrors()">
+          <i class="material-icons" (click)="togglePasswordVisibility()"
+            [title]="showPassword ? 'Hide Password' : 'Show Password'"> {{ showPassword ? 'visibility' : 'visibility_off' }}</i>
+        </div>
+        <div *ngFor="let error of passwordErrors" class="error-message">{{ error }}</div>
+      </div>
+
+      <div *ngIf="formError" class="error-message">{{ formError }}</div>
+
+      <button type="button" [disabled]="!isFormValid()" class="btn btn-info" (click)="register()">Register</button>
+    </form>
+
+    <div class="register-link">
+      <p><a href="">Back</a>, Already have an account? <a routerLink="/login">Sign In</a></p>
+    </div>
+  </div>
+</div>

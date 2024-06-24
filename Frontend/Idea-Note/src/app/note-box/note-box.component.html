@@ -1,0 +1,22 @@
+<div class="note-box-container">
+  <div class="note-box" [ngClass]="{'expanded': isExpanded}" (click)="expandNote()">
+    <div *ngIf="isEditMode && taskDetails">
+      <h3>Edit Your Task</h3>
+      <form #editTaskForm="ngForm" (ngSubmit)="submitNote()">
+        <input type="text" class="note-title" placeholder="Task Name" [(ngModel)]="taskName" name="taskName" required>
+        <input type="date" class="note-due-date" [(ngModel)]="dueDate" [min]="minDate" name="dueDate" required>
+        <textarea class="note-content" placeholder="Task Description" [(ngModel)]="taskDescription" name="taskDescription" required></textarea>
+        <button class="submit-button" [disabled]="editTaskForm.invalid">Update</button>
+      </form>
+    </div>
+    <div *ngIf="!isEditMode">
+      <form #addTaskForm="ngForm" (ngSubmit)="submitNote()">
+        <input type="text" class="note-title" placeholder="Take a note..." *ngIf="!isExpanded" (click)="expandNote()">
+        <input type="text" class="note-title" placeholder="Task Name" [(ngModel)]="taskName" *ngIf="isExpanded" name="taskName" required>
+        <input type="date" class="note-due-date" [(ngModel)]="dueDate" [min]="minDate" *ngIf="isExpanded" name="dueDate" required>
+        <textarea class="note-content" placeholder="Task Description" [(ngModel)]="taskDescription" *ngIf="isExpanded" name="taskDescription" required></textarea>
+        <button class="submit-button" *ngIf="isExpanded" [disabled]="addTaskForm.invalid">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

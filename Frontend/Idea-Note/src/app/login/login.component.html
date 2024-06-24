@@ -1,0 +1,42 @@
+<div class="background">
+    <div class="container">
+        <!-- <span class="img1"> <img src="assets\images\Img1.avif" width="900px" height="auto" alt=""></span> -->
+        <h2 class="login-header">Login</h2>
+        <form (ngSubmit)="login()" class="animated-form">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <div class="inputbox">
+                    <input type="email" class="form-control" id="email" placeholder="Enter Your Email Here" name="email"
+                        [(ngModel)]="credentials.email" [formControl]="emailFormControl">
+                    <i class="material-icons">mail</i>
+                </div>
+                <div *ngIf="emailFormControl.invalid && (emailFormControl.dirty || emailFormControl.touched)"
+                     class="error-message">
+                    <div *ngIf="emailFormControl.hasError('required')">Email is required</div>
+                    <div *ngIf="emailFormControl.hasError('email')">Enter a valid email address</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="pwd">Password:</label>
+                <div class="inputbox">
+                    <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="pwd"
+                        placeholder="Enter Your Password Here" name="pwd" [(ngModel)]="credentials.password" [formControl]="passwordFormControl">
+                    <i class="material-icons" (click)="togglePasswordVisibility()"
+                        [title]="showPassword ? 'Hide Password' : 'Show Password'">
+                        {{ showPassword ? 'visibility' : 'visibility_off' }}
+                    </i>
+                </div>
+                <div *ngIf="passwordFormControl.invalid && (passwordFormControl.dirty || passwordFormControl.touched)"
+                     class="error-message">
+                    <div *ngIf="passwordFormControl.hasError('required')">Password is required</div>
+                    <div *ngIf="passwordFormControl.hasError('minlength')">Password must be at least 8 characters long</div>
+                </div>
+            </div>
+            <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+            <button type="submit" class="btn btn-info" [disabled]="!emailFormControl.valid || !passwordFormControl.valid">Login</button>
+        </form>
+        <div class="register-link">
+            <p><a href="">Home</a>, Don't have an account? <a href="#" (click)="navigateToRegistration()">Sign Up</a></p>
+        </div>
+    </div>
+</div>

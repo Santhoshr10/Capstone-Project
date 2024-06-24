@@ -1,0 +1,12 @@
+<div class="backdrop" (click)="closeDialog()"></div>
+<div class="dialog-content">
+  <p><strong>Task Name:</strong> {{ data.taskName }}</p>
+  <p><strong>Task Description:</strong> {{ data.taskDescription }}</p>
+  <p><strong>Due Date:</strong> {{ data.dueDate | date }}</p>
+  <p><strong>Status:</strong> {{ data.taskStatus }}</p>
+  <p><strong>Priority:</strong>
+    <span [ngClass]="{'high-priority': data.taskPriority === 'High', 'medium-priority': data.taskPriority === 'Medium', 'low-priority': data.taskPriority === 'Low'}">
+      {{ data.taskPriority || 'Low' }}
+    </span>
+  </p>
+</div>

@@ -1,0 +1,113 @@
+<app-dashboard></app-dashboard>
+<app-note-box [taskDetails]="selectedTask" [isEditMode]="isEditMode" (taskAdded)="loadAllTasks()" (taskEdit)="onTaskUpdated($event)" ></app-note-box>
+
+<div class="task-status-section">
+  <div class="task-button" (click)="toggleAllTasksVisibility()">All Tasks ({{ tasks.length }})</div>
+  <div class="task-button" (click)="toggleCompletedTasksVisibility()">Completed Tasks ({{ completedCount }})</div>
+  <div class="task-button" (click)="togglePendingTasksVisibility()">Pending Tasks ({{ pendingCount }})</div>
+  <div class="task-button" (click)="toggleInProgressTasksVisibility()">In Progress Tasks ({{ inProgressCount }})</div>
+</div>
+
+<div class="task-list" *ngIf="showAllTasks">
+  <div *ngFor="let task of tasks" class="task-card" (click)="openTaskDetailsDialog(task)">
+    <h3>{{ task.taskName }}</h3>
+    <p class="description">{{ task.taskDescription }}</p>
+    <p>Due Date: {{ task.dueDate | date }}</p>
+    <p>Status: {{ task.taskStatus }}</p>
+    <p>Priority: {{ task.taskPriority || 'Low' }}</p>
+    <div class="task-actions">
+      <button *ngIf="task.taskStatus !== 'COMPLETED'" (click)="openTaskStatusDialog(task);$event.stopPropagation()">
+        <i class="fa-solid fa-check" title="ChangeStatus"></i>
+      </button>
+      <button *ngIf="task.taskStatus !== 'PENDING' && task.taskStatus !== 'IN_PROGRESS'" (click)="archiveTask(task.taskId);$event.stopPropagation()">
+        <i class="fa-solid fa-box-archive" title="Archive"></i> 
+      </button>
+      <button (click)="trashTask(task.taskId);$event.stopPropagation()">
+        <i class="fa-solid fa-trash" title="Trash"></i>
+      </button>
+      <button *ngIf="task.taskStatus !== 'COMPLETED'" (click)="editTask(task);$event.stopPropagation()">
+        <i class="fa-solid fa-pencil" title="Edit"></i>
+      </button>
+      <button *ngIf="task.taskStatus !== 'COMPLETED'" (click)="openPriorityDialog(task);$event.stopPropagation()">
+        <i class="fa-solid fa-thumbtack" title="Priority"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="task-list" *ngIf="showCompletedTasks">
+  <div *ngFor="let task of completedTasks" class="task-card" (click)="openTaskDetailsDialog(task)">
+    <h3>{{ task.taskName }}</h3>
+    <p class="description">{{ task.taskDescription }}</p>
+    <p>Due Date: {{ task.dueDate | date }}</p>
+    <p>Status: {{ task.taskStatus }}</p>
+    <p>Priority: {{ task.taskPriority || 'Low' }}</p>
+    <div class="task-actions">
+      <button (click)="archiveTask(task.taskId);$event.stopPropagation()">
+        <i class="fa-solid fa-box-archive" title="Archive"></i> 
+      </button>
+      <button (click)="trashTask(task.taskId);$event.stopPropagation()">
+        <i class="fa-solid fa-trash" title="Trash"></i> 
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="task-list" *ngIf="showPendingTasks">
+  <div *ngFor="let task of pendingTasks" class="task-card" (click)="openTaskDetailsDialog(task)">
+    <h3>{{ task.taskName }}</h3>
+    <p class="description">{{ task.taskDescription }}</p>
+    <p>Due Date: {{ task.dueDate | date }}</p>
+    <p>Status: {{ task.taskStatus }}</p>
+    <p>Priority: {{ task.taskPriority || 'Low' }}</p>
+    <div class="task-actions">
+      <button (click)="openTaskStatusDialog(task);$event.stopPropagation()">
+        <i class="fa-solid fa-check" title="ChangeStatus"></i>
+      </button>
+      <button (click)="trashTask(task.taskId);$event.stopPropagation()">
+        <i class="fa-solid fa-trash" title="Trash"></i>
+      </button>
+      <button (click)="editTask(task);$event.stopPropagation()">
+        <i class="fa-solid fa-pencil" title="Edit"></i>
+      </button>
+      <button (click)="openPriorityDialog(task);$event.stopPropagation()">
+        <i class="fa-solid fa-thumbtack" title="Priority"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div class="task-list" *ngIf="showInProgressTasks">
+  <div *ngFor="let task of inProgressTasks" class="task-card" (click)="openTaskDetailsDialog(task)">
+    <h3>{{ task.taskName }}</h3>
+    <p class="description">{{ task.taskDescription }}</p>
+    <p>Due Date: {{ task.dueDate | date }}</p>
+    <p>Status: {{ task.taskStatus }}</p>
+    <p>Priority: {{ task.taskPriority || 'Low' }}</p>
+    <div class="task-actions">
+      <button (click)="openTaskStatusDialog(task);$event.stopPropagation()">
+      <i class="fa-solid fa-check" title="ChangeStatus"></i>
+      </button>
+      <button (click)="trashTask(task.taskId);$event.stopPropagation()">
+      <i class="fa-solid fa-trash" title="Trash"></i>
+      </button>
+      <button (click)="editTask(task);$event.stopPropagation()">
+      <i class="fa-solid fa-pencil" title="Edit"></i>
+      </button>
+      <button (click)="openPriorityDialog(task);$event.stopPropagation()">
+        <i class="fa-solid fa-thumbtack" title="Priority"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="tasks.length === 0 && completedTasks.length === 0 && pendingTasks.length === 0 && inProgressTasks.length === 0" class="no-tasks">
+  <p>No tasks found</p>
+  <div class="no-tasks-image">
+    <img src="/assets/images/no-task.png" alt="No tasks found image">
+  </div>
+</div>

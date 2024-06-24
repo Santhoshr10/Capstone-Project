@@ -1,0 +1,19 @@
+<header>
+    <nav class="navbar navbar-expand navbar-black bg-blue px-2">
+        <div class="side-nav-button p-2 me-3 text-light" (click)="SideNavToogle()" title="Toggle Sidebar">
+            <i class="fa-solid fa-bars" style="color: white;"></i>
+        </div>
+        <p class="navbar-brand px-4" style="color:white; margin: 10px;">IdeaNote</p>
+        
+        <form class="d-flex me-5" (submit)="onSearch()">
+            <input class="form-control me-2" type="search" placeholder="Search By Your Task Name" style="width: 500px;" [(ngModel)]="searchQuery" name="searchQuery">
+            <button style="background-color:white; border-radius: 5px;" type="submit">Search</button>
+        </form>
+        <div  *ngIf="loggedInUser" style="margin-left: 200px;">
+            
+            <h2 class="dropbtn" > <i class="fa-solid fa-circle-user" style="font-size: 24px;" ></i>  Hi, {{ loggedInUser }}</h2>
+            
+        </div>
+
+    </nav>
+</header>

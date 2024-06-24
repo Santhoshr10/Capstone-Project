@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body
+{
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* background: black; */
+    background-image: ("/assets/images/th.jpeg");
+}
+
+section
+{
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+section::before
+{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top,#1c0522,transparent);
+    z-index: 1000;
+}
+section img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+section img#moon
+{
+    mix-blend-mode: screen;
+}
+
+section img#mountains_front.png
+{
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position:relative;
+}
+
+#text {
+    position: absolute;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    color: rgb(22, 101, 16); 
+    white-space: nowrap;
+    font-size: 7.5vw;
+    z-index: 9;
+    font-family: 'Arial', sans-serif; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    animation: neonEffect 1.5s ease-in-out infinite alternate; 
+}
+#tex{
+    position: absolute;
+    margin-bottom: 300px;
+    margin-left: 50px;
+    color: rgb(22, 101, 16); 
+    white-space: nowrap;
+    font-size: 7.5vw;
+    z-index: 9;
+    font-family: 'Arial', sans-serif; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    animation: neonEffect 1.5s ease-in-out infinite alternate;
+}
+
+
+#btn {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 30px;
+    border-radius: 40px;
+    background: rgb(9, 104, 155);
+    color: #e0dce7;
+    font-size: 1.5em;
+    font-weight: 500;
+    z-index: 9;
+    margin-left: 51px;
+    transform: translateY(100px);
+    transition: transform 0.3s ease;
+}
+
+#btn:hover {
+    transform: translateY(90px);
+}
+
+.sec
+{
+    position: relative;
+    padding: 100px;
+    background:yellowgreen;
+
+
+}
+.sec h2
+{
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+
+.sec p
+{
+    font-size: 1.2em;
+    color: #fff;    
+}
+

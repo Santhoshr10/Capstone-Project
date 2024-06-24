@@ -1,0 +1,28 @@
+<app-dashboard></app-dashboard>
+<div *ngIf="trashedTasks.length > 0; else noTasks">
+  <div class="task-list">
+    <div *ngFor="let task of trashedTasks" class="task-card" (click)="openTaskDetailsDialog(task)">
+      <div class="task-details">
+        <h3>{{ task.taskName }}</h3>
+        <p class="description">{{ task.taskDescription }}</p>
+        <p>Due Date: {{ task.dueDate | date }}</p>
+        <p>Status: {{ task.taskStatus }}</p>
+        <p>Priority: {{ task.taskPriority || 'Low' }}</p>
+      </div>
+      <div class="task-actions">
+        <button (click)="restoreTask(task); $event.stopPropagation()">
+          <i class="fa-solid fa-box-archive"></i> Restore
+        </button>
+        <button (click)="deleteTask(task.taskId); $event.stopPropagation()">
+          <i class="fa-solid fa-trash"></i> Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noTasks>
+  <div class="no-trash">
+    <p>No Trashed Tasks Is Available</p>
+    <img src="/assets/images/No-Trash.png" alt="No Trashed Task Found">
+  </div>
+</ng-template>

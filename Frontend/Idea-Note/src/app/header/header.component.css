@@ -1,0 +1,86 @@
+header{
+  background-color: rgb(14, 29, 109);  
+  border: whitesmoke;
+}
+
+nav{
+    height: 100%
+}
+.dropbtn {
+    background-color: rgb(14, 29, 109);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 2px solid #333; 
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none; 
+  }
+  
+  .dropbtn:hover {
+    background-color:rgb(14, 29, 109);; 
+    border-color:white; 
+    position: left;
+  }
+  
+  
+
+  .dropdown-content {
+    display: none; 
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px; 
+    z-index: 1; 
+    padding: 10px; 
+  }
+  
+  .dropdown-content button {
+    display: block; 
+    padding: 10px 20px; 
+    text-decoration: none; 
+    color: white; 
+    border: none; 
+    background-color: transparent;
+    cursor: pointer; 
+  }
+  
+ 
+  .dropdown-content button:hover {
+    background-color: #ddd; 
+}  
+  
+.side-nav-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-left: 10px;
+    
+}
+
+.gear-icon::after {
+    display: none; 
+}
+
+
+.side-nav-button:hover{
+    /* background-color:white; */
+    border-radius: 40%; 
+    width: 40px;
+    height:40px;
+}
+
+.rotate-icon,
+.gear-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.rotate-icon:hover,
+.gear-icon:hover{
+    color: white;
+    cursor: pointer;
+}

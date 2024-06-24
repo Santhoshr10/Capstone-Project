@@ -1,0 +1,105 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/assets/images/Img1.avif');
+  background-size: 500px;
+  z-index: -1; 
+}
+
+.container {
+  width: 400px; 
+  margin: 50px auto;
+  padding: 20px;
+  /* background-color: rgba(36, 67, 125, 0.68);  */
+  background-color: transparent;
+  border-radius: 12px; 
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3); 
+  backdrop-filter: blur(8px); 
+  animation: expand 0.5s ease-in-out forwards;
+  margin-top: 150px; 
+}
+
+.img1 img {
+  width: 100%;
+  height: auto;
+}
+@keyframes expand {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.login-header {
+  text-align: center; 
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.inputbox {
+  position: relative;
+}
+
+.inputbox input {
+  padding-right: 40px; 
+}
+.inputbox i {
+  position: absolute;
+  right: 10px; 
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.checkbox {
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  border-radius: 20px; 
+  padding: 10px 20px; 
+  text-align: center;
+  background-color: #ffffff; 
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.btn:hover {
+  background-color: #add8e6; 
+}
+
+.register-link {
+  margin-top: 20px; 
+}
+
+.error-message {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.material-icons {
+  font-size: 24px; 
+  color: #000; 
+  cursor: pointer; 
+}
+.register-link a {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.register-link a:hover {
+  transform: translateY(-3px); 
+  color:green;
+}

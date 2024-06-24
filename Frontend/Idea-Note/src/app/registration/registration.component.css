@@ -1,0 +1,92 @@
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(74, 78, 162);
+  z-index: -1;
+  
+}
+
+.img3 {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  /* margin-left: 50px; */
+  margin-top: 60px;
+  margin-right: 70px;
+}
+
+.container {
+  width: 500px;
+  height: 410px; 
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  margin-right: 110px;
+  margin-top: -610px;
+}
+
+
+.login-header {
+  text-align: center; 
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.inputbox {
+  position: relative;
+}
+
+.inputbox input {
+  padding-right: 40px; 
+}
+.inputbox i {
+  position: absolute;
+  right: 10px; 
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.checkbox {
+  margin-bottom: 20px;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  border-radius: 20px; 
+  padding: 10px 20px; 
+  text-align: center;
+  background-color: #ffffff; 
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+.btn:hover {
+  background-color: #add8e6; 
+}
+
+.register-link {
+  margin-top: 20px; 
+}
+
+.error-message {
+  color: #ff0000;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.material-icons {
+  font-size: 24px; 
+  color: #000; 
+  cursor: pointer; 
+}
